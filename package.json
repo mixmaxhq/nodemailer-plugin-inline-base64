@@ -1,0 +1,30 @@
+{
+  "name": "nodemailer-plugin-inline-base64",
+  "version": "0.0.1",
+  "description": "Nodemailer plugin that will inline base64 images",
+  "main": "src/plugin.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine-node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mixmaxhq/nodemailer-plugin-inline-base64.git"
+  },
+  "keywords": [
+    "nodemailer",
+    "plugin",
+    "base64",
+    "attachment"
+  ],
+  "author": "Brad Vogel <brad@mixmax.com> (https://mixmax.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixmaxhq/nodemailer-plugin-inline-base64/issues"
+  },
+  "homepage": "https://github.com/mixmaxhq/nodemailer-plugin-inline-base64"
+}
