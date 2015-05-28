@@ -2,7 +2,7 @@
 
 Base64 images are generally a [bad idea](https://sendgrid.com/blog/embedding-images-emails-facts/) because they aren't supported in most email clients. This Nodemailer plugin will take base64 images in your email html in the form:
 
-    <img src="data:image/png;base64,...">
+    <img src="data:image/*;base64,...">
 
 and replace it with a CID-referenced attachment that works in all email clients.
 
@@ -38,10 +38,6 @@ transporter.sendMail({
     html: '&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAACCAYAAACE7KJkAAAAI0lEQVRYR+3DMQ0AAAgDsKlFzZxgEhOcbdIEAIBf7Y6qqn8P0MMQZPno7TMAAAAASUVORK5CYII=">'
 });
 ```
-
-## TODO
-
-* Extend to GIFs
 
 ## License
 
