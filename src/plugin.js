@@ -11,13 +11,13 @@ var plugin = function(mail, done) {
 
     var attachments = {};
 
-    html = replaceBase64Images(html, function(base64) {
+    html = replaceBase64Images(html, function(mimeType, base64) {
       if (attachments[base64]) return attachments[base64].cid;
 
       var randomCid = crypto.randomBytes(8).toString('hex');
 
       attachments[base64] = {
-        contentType: 'image/png',
+        contentType: mimeType,
         cid: randomCid,
         content: base64,
         encoding: 'base64',
