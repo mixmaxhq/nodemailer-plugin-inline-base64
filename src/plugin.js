@@ -12,9 +12,10 @@ var plugin = function(mail, done) {
     var attachments = {};
 
     html = replaceBase64Images(html, function(mimeType, base64) {
+
       if (attachments[base64]) return attachments[base64].cid;
 
-      var randomCid = crypto.randomBytes(8).toString('hex');
+      var randomCid = crypto.randomBytes(8).toString('hex') + '@nodemailer.com';
 
       attachments[base64] = {
         contentType: mimeType,
