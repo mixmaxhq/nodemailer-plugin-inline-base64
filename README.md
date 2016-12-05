@@ -46,6 +46,14 @@ transporter.sendMail({
 });
 ```
 
+## Changelog
+
+* 2.0.0 **Breaking change**: the constructor now needs to be called as a function. Adds `cidPrefix` option.
+
+* 1.0.1 Support image types other than `png`
+
+* 1.0.0 Initial release
+
 ## References
 <sup id="1">1</sup> It might be useful for reply email processing, example with [MailParser](https://github.com/andris9/mailparser)
 
