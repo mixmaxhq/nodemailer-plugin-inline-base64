@@ -25,8 +25,13 @@ var inlineBase64 = require('nodemailer-plugin-inline-base64');
 #### 2. Attach it as a 'compile' handler for a nodemailer transport object
 
 ```javascript
-nodemailerTransport.use('compile', inlineBase64)
+nodemailerTransport.use('compile', inlineBase64(options))
 ```
+Options allow to set CID prefix<sup><a href="#1">1</a></sup> ```{cidPrefix: 'somePrefix_'}```,
+then all inline images will have prefix in cid, i.e.: `cid:somePrefix_5fe3b631c651bdb1`. If you don't need this,
+you can use inlineBase64 plugin without options.
+
+
 
 ## Example
 
@@ -38,6 +43,17 @@ transporter.sendMail({
     from: 'me@example.com',
     to: 'hello@mixmax.com',
     html: '&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAACCAYAAACE7KJkAAAAI0lEQVRYR+3DMQ0AAAgDsKlFzZxgEhOcbdIEAIBf7Y6qqn8P0MMQZPno7TMAAAAASUVORK5CYII=">'
+});
+```
+
+## References
+<sup id="1">1</sup> It might be useful for reply email processing, example with [MailParser](https://github.com/andris9/mailparser)
+
+```javascript
+mp.on("attachment", function(attachment, mail){
+    if (!attachment.contentId.includes('somePrefix')) { // process only images attached by user in reply
+        // ...
+    }
 });
 ```
 
