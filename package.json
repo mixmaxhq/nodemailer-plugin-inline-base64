@@ -1,6 +1,6 @@
 {
   "name": "nodemailer-plugin-inline-base64",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Nodemailer plugin that will inline base64 images",
   "main": "src/plugin.js",
   "directories": {
