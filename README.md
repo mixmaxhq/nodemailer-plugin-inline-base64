@@ -10,9 +10,13 @@ and replace it with a CID-referenced attachment that works in all email clients.
 
 ## Install
 
-Install from npm
-
-    npm install nodemailer-plugin-inline-base64 --save
+```
+yarn add nodemailer-plugin-inline-base64
+```
+or
+```
+npm install nodemailer-plugin-inline-base64 --save
+```
 
 ## Usage
 
