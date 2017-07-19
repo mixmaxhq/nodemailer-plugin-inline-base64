@@ -51,4 +51,10 @@ describe('replaceBase64Images', function() {
     var html = 'data:image/png;base64,abc';
     expect(replaceBase64Images(html, replacer)).toBe(html);
   });
+
+  it('should replace css image url', function() {
+      var html = '.css-class { background: url(data:image\/jpg;base64,abc) repeat-x;}';
+      var expected = '.css-class { background: url(cid:image\/jpg-cba) repeat-x;}';
+      expect(replaceBase64Images(html, replacer)).toBe(expected);
+  });
 });
