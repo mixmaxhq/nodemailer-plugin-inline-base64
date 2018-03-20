@@ -71,8 +71,8 @@ describe('replaceBase64Images', function() {
     });
 
     it('should replace a single source (double quote)', function() {
-      var html = '<div style="background-image: url("data:image\/png;base64,abc");"></div>';
-      var expected = '<div style="background-image: url(\"cid:image\/png-cba\");"></div>';
+      var html = '<div style=\'background-image: url("data:image\/png;base64,abc");\'></div>';
+      var expected = '<div style=\'background-image: url("cid:image\/png-cba");\'></div>';
       expect(replaceBase64Images(html, replacer)).toBe(expected);
     });
 
@@ -80,6 +80,22 @@ describe('replaceBase64Images', function() {
       var html = '<div style="background-image: url(\'data:image\/png;base64,abc\');"></div>';
       var expected = '<div style="background-image: url(\'cid:image\/png-cba\');"></div>';
       expect(replaceBase64Images(html, replacer)).toBe(expected);
+    });
+
+    '&quot; &QUOT; &#34; &#x22; &#X22;'.split(' ').forEach(function(q) {
+      it('should replace a single source (double quote escaped as ' + q + ')', function() {
+        var html = '<div style="background: url(' + q + 'data:image\/png;base64,abc' + q + ');"></div>';
+        var expected = '<div style="background: url(' + q + 'cid:image\/png-cba' + q + ');"></div>';
+        expect(replaceBase64Images(html, replacer)).toBe(expected);
+      });
+    });
+
+    '&apos; &#39; &#x27; &#X27;'.split(' ').forEach(function(q) {
+      it('should replace a single source (single quote escaped as ' + q + ')', function() {
+        var html = '<div style="background: url(' + q + 'data:image\/png;base64,abc' + q + ');"></div>';
+        var expected = '<div style="background: url(' + q + 'cid:image\/png-cba' + q + ');"></div>';
+        expect(replaceBase64Images(html, replacer)).toBe(expected);
+      });
     });
 
     it('should handle gifs', function() {
@@ -109,6 +125,12 @@ describe('replaceBase64Images', function() {
     it('should not replace base64 outside of a css `url()`', function() {
       var html = 'data:image/png;base64,abc';
       expect(replaceBase64Images(html, replacer)).toBe(html);
+    });
+
+    it('should allow spaces like `url( "data:..." )`', function() {
+      var html = '<div style=\'background-image: url(  "data:image\/png;base64,abc" );\'></div>';
+      var expected = '<div style=\'background-image: url(  "cid:image\/png-cba" );\'></div>';
+      expect(replaceBase64Images(html, replacer)).toBe(expected);
     });
 
   });
