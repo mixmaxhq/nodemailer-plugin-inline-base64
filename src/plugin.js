@@ -23,7 +23,8 @@ var plugin = function(options) {
           cid: randomCid,
           content: base64,
           encoding: 'base64',
-          contentDisposition: 'inline'
+          contentDisposition: 'inline',
+          filename: randomCid
         };
         return randomCid;
       });
